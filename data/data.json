@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "category": "Happier",
+      "title": "Move your body",
+      "description": "Go for a walk, put on your favourite song and dance to it, play with your pet... you decide! Just try to squeeze at least 20 minutes of physical activity into your day."
+    },
+    {
+        "id": 2,
+        "category": "Happier",
+        "title": "Get in touch with an old friend or relative",
+        "description": "Got an old friend or relative that you haven't caught up with in a long time? Reach out and ask them how they've been doing!"
+      },
+      {
+        "id": 3,
+        "category": "Healthier",
+        "title": "Cook a meal with at least 5 different colours",
+        "description": "And no, ketchup and mustard don't count as colours! Cook up a meal with a healthy variety of colourful vegetables and legumes. You'll feel as good as it tastes!"
+      }
+]

@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
+import data from "./data/data.json";
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -114,6 +115,15 @@ const authenticateUser = async (req, res, next) => {
 app.get("/", (req, res) => {
   res.send("This is the backend of our project");
 });
+
+app.get ('/challenges', (req, res) => {
+  res.json(data)
+});
+
+// app.get('/challenges/:category', (req, res) => {
+  
+
+// })
 
 // Starts the server
 app.listen(port, () => {
