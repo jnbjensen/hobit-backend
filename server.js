@@ -120,10 +120,12 @@ app.get ('/challenges', (req, res) => {
   res.json(data)
 });
 
-// app.get('/challenges/:category', (req, res) => {
+app.get('/challenges/:category', (req, res) => {
+  const category = req.params.category
+  const challengesCategory = data.filter((item) => item.category === category)
+  res.json(challengesCategory)
   
-
-// })
+})
 
 // Starts the server
 app.listen(port, () => {
