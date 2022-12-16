@@ -5,7 +5,7 @@ import crypto from "crypto";
 import bcrypt from "bcrypt";
 import data from "./data/data.json";
 
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/project-mongo";
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/hobit-backend";
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = Promise;
 
@@ -30,11 +30,124 @@ const UserSchema = new mongoose.Schema({
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString("hex")
+  },
+  programs: {
+    activeProgram: {
+      category: {
+       type: String
+     },
+     day: {
+       type: Number
+     },
+     startDate: {
+       type: String,
+       default: () => new Date()
+     },
+   }, 
+   completedPrograms: {
+     type: [String]
+   }
   }
 });
 
-//USER REGISTRATION
 const User = mongoose.model("User", UserSchema);
+
+//TEST USER
+
+// const testUser = new User({name:"Nick", password: bcrypt.hashSync('opensesame')});
+// testUser.save()
+
+//
+
+  // activePrograms: 
+  //  [{
+  //   category: {
+  //     type: String
+  //   },
+  //   day: {
+  //     type: Number,
+  //     default: 0
+  //   },
+  //   startDate: {
+  //     type: String,
+  //     default: () => new Date()
+  //   },
+  // }], 
+
+const ProgramChallengeSchema = new mongoose.Schema({
+  day: {
+    type: Number
+  },
+  category: {
+    type: String
+  },
+  title: {
+    type: String
+  },
+  description: {
+    type: String
+  }
+});
+
+const ProgramSchema = new mongoose.Schema({
+  category: {
+    type: String
+  },
+  challenges: {
+    type: [ProgramChallengeSchema]
+  }
+});
+
+const Program = mongoose.model("Program", ProgramSchema);
+
+if(process.env.ADD_PROGRAMS) { 
+  const addProgramsToDatabase = async () => {
+    await Program.deleteMany(); 
+    // Delete any duplicate entries
+    const temporaryArray = []; 
+    // Create a temporary array
+    data.forEach(singleChallenge => { 
+      //for each challenge object in our data.json file...
+      const indexOfObjectWithGivenCategory = temporaryArray.findIndex(element => element.category === singleChallenge.category); 
+      // check whether such an object with that category already exists in our temporary array.
+      if (indexOfObjectWithGivenCategory < 0) {
+        // if not (i.e. findIndex returns -1...)
+        const newProgramObject = {
+          category: singleChallenge.category,
+          challenges: []
+        }
+        // create a new Program object inside our temporary array, with a key for that singleChallenge category and an empty challenges array
+        newProgramObject.challenges.push(singleChallenge)
+        // then, add that singleChallenge object to the 'challenges' array of the new Program object
+      } else {
+        temporaryArray[indexOfObjectWithGivenCategory].challenges.push(singleChallenge)
+      }
+      // but if findIndex returns 0 or greater, i.e. the forEach loop has already created a newProgramObject, add that singleChallenge to that Program's challenges array.
+    });
+    temporaryArray.map(singleProgram => {
+      // now, for each program object in our temporary array...
+      const newProgram = new Program(singleProgram);
+      // treat is as a mongoose model
+      newProgram.save();
+      // and save it to the database
+    });
+    addProgramsToDatabase();
+    // aaaand run!
+  }}
+
+/// login happend and you have acces to the user that tried to login
+/// you want to send back the program:
+// response: {
+// you select the Program that has the user.activeProgram category, and you send back the challenge that has the day number of the current step that the user is on
+//
+
+// ENDPOINTS
+
+app.get("/", (req, res) => {
+  res.send("This is the backend of our project");
+});
+
+// USER REGISTRATION, LOGIN AND AUTHENTICATION
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -45,7 +158,7 @@ app.post("/register", async (req, res) => {
         response: "Password must be at least 8 characters long"
       });
     } else {
-      const newUser = await new User({username: username, password: bcrypt.hashSync(password, salt)}).save();
+      const newUser = await new User({username, password: bcrypt.hashSync(password, salt)}).save();
       res.status(201).json({
         success: true,
         response: {
@@ -63,7 +176,6 @@ app.post("/register", async (req, res) => {
   }
 });
 
-//USER LOGIN
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -91,7 +203,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//USER AUTHENTICATION
 const authenticateUser = async (req, res, next) => {
   const accessToken = req.header("Authorization");
   try {
@@ -112,19 +223,44 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-app.get("/", (req, res) => {
-  res.send("This is the backend of our project");
-});
-
-app.get ('/challenges', (req, res) => {
+// FULL LIST OF CHALLENGES
+app.get('/challenges', (req, res) => {
   res.json(data)
 });
 
+// CHALLENGES BY CATEGORY/PROGRAM
 app.get('/challenges/:category', (req, res) => {
   const category = req.params.category
   const challengesCategory = data.filter((item) => item.category === category)
   res.json(challengesCategory)
-  
+})
+
+// CATEGORY/PROGRAM NAMES
+app.get('/categories', (req, res) => {
+  const categories = new Set()
+  for (let i = 0; i < data.length; i++) {
+    categories.add(data[i].category)
+  }
+  const categoriesArray = Array.from(categories)
+  return res.status(200).json({'categories': categoriesArray});
+});
+
+// USER PROGRAM DATA
+app.get('/profile', authenticateUser)
+app.get('/profile/:userId', async (req, res) => {
+	const { userId } = req.params
+	try {
+		const userPrograms = await User.findById(userId)
+		res.status(200).json({
+			response: userPrograms.programs,
+			success: true,
+		})
+	} catch (error) {
+		res.status(400).json({
+			response: error,
+			success: false,
+		})
+	}
 })
 
 // Starts the server

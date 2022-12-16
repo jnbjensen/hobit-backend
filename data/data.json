@@ -1,20 +1,142 @@
-[
-    {
-      "id": 1,
-      "category": "happier",
-      "title": "Move your body",
-      "description": "Go for a walk, put on your favourite song and dance to it, play with your pet... you decide! Just try to squeeze at least 20 minutes of physical activity into your day."
-    },
-    {
-        "id": 2,
+  [
+      {
+       "category": "happier",
+       "title": "Move your body",
+       "description": "Go for a walk, put on your favourite song and dance to it, play with your pet... you decide! Just try to squeeze at least 20 minutes of physical activity into your day."
+      },
+      {
         "category": "happier",
         "title": "Get in touch with an old friend or relative",
         "description": "Got an old friend or relative that you haven't caught up with in a long time? Reach out and ask them how they've been doing!"
       },
       {
-        "id": 3,
+        "category": "happier",
+        "title": "Try a new recipe",
+        "description": "If you feel like you're stuck in your old ways, changing up your dinner plans could be a fun activitity to brighten your mood. Browse and old cook book or go online to find a new recipe to try out!"
+      },
+      {
+        "category": "happier",
+        "title": "Practice gratitude",
+        "description": "In our fast-paced lives, it is easy to get stuck in thoughts about what a jerk your boss is, how your morning commute is full of people with coffee breath and how it's always monday, never friday. Tale a few minutes today to appreciate your life, and be grateful for plants, friends, partner, nature, family or pets. Just think what a luxury it is to be surrounded by such warm and beautiful presences!"
+      },
+      {
+        "category": "happier",
+        "title": "Give a compliment",
+        "description": "Research shows that performing acts of kindness may also help promote your overall well-being. Giving a sincere compliment is a quick, easy way to brighten someone's day while giving your own happiness a boost. Smile at someone today and compliment them!"
+      },
+      {
+        "category": "happier",
+        "title": "Indulge in self care",
+        "description": "Today we want you to think of something that would really calm you down and put you in a great mood. Would it be to go to the nearest dog park and pet a pup? Baking a chocolate cake that's just for you? Harry Potter-marathon? Or maybe just taking a good-old reality-bending 4 hour nap? Indulge yourself today, and prioritize your own self care!"
+      },
+      {
+        "category": "happier",
+        "title": "Connect with nature",
+        "description": "We know it's a cliche, but being in nature really has an impact on our overall happiness. If it's sunny outside, go to a park with a friend and have a picnic. Raining? Seek shelter in the woods and look for big trees and funny-looking bugs. In the winter, go ice-skating at an outdoor rink or build the biggest snowman possible. Fresh air is an amazing remedy for feeling gloomy."
+      },
+      {
+        "category": "focused",
+        "title": "Reduce multitasking",
+        "description": "One of the reasons why we might feel distracted is because we have too much in our head at the same time. One step toward being more focused in our everyday lives is to try and do one thing at a time. For today, try small: leave your phone in another room when working or studying, and try to time your tasks so you only focus on one thing for, say, 15 minutes."
+      },
+      {
+        "category": "focused",
+        "title": "Layer your focus",
+        "description": "When setting a priority or task list, it is easy to write things like 'Finish the essay', or 'Clean the apartment'. What we want you to do today is break down each task into many small tasks! For example, if you need to clean the apartment today, write tasks like 'Make the bed', 'Dust the bookshelf' and 'Wipe the kitchen counter'. Breaking it down into small tasks will first of all give you a greater feeling of accomplishment, plus the visual cue of having so many items ticked off your list."
+      },
+      {
+        "category": "focused",
+        "title": "Mindful minute",
+        "description": "Meditation has proven to strengthen mental well-being and increasing our brain's focus. During the meditation process, our brain becomes calmer and our whole body becomes more relaxed. We focus on our breath during the process so that we will not be distracted by our minds. Today, take a few minutes to meditate, either on your own or with the help of a meditation guide. Here is a tip on a short meditation: https://www.youtube.com/watch?v=g95eloerZmw&ab_channel=MindfulPeace"
+      },
+      {
+        "category": "focused",
+        "title": "Take a break",
+        "description": "..Wait, what? Yes, take a break! It might sound counterproductive, but studying or working for hours on end is actually what is counterproductive to being more focused. When starting on your tasks today, set a 30 minute timer. When the timer goes off, take a quick break to stand up, get some fresh air or a snack. When you get back to work again, you will feel more refreshed and ready to go!"
+      },
+      {
+        "category": "focused",
+        "title": "Reflect on your day",
+        "description": "After a long day of work, it's hard to feel like doing anything else except laying down on the sofa and scroll. What we want you to do instead is turn inward and reflect for a few minutes. Be grateful for what you achieved today and the progress you're making, be forgiving toward yourself for what you wanted to accomplish today but didn't. Based on these reflections, think about what you can do tomorrow to achieve your goals."
+      },
+      {
+        "category": "focused",
+        "title": "Prioritize sleep and sleep quality",
+        "description": "We know playing Candy Crush for half an hour before bed might feel satisfactory, but in reality, using screens right before bedime has a bad influence on how we sleep and when we fall asleep. Instead, try to listen to your body. When do you actually feel tired? Go to bed at that time, even though you have 30 minutes left on the tv series episode. Listen to what your body needs - it is probably more sleep, so give it that. Sleep depravation is the ultimate focus killer!"
+      },
+      {
+        "category": "focused",
+        "title": "Screen-free meals",
+        "description": "Have you ever heard the term 'mindful eating'? Well, this is what we're practicing today. Instead of scrolling your Twitter feed when eating, we want you to give your phone a break and instead focus on the task at hand. With every bite, think about the flavors, textures and sensations you experience. Chew with purpose, and focus on the taste of the meal. Can you identify all the flavor types: sweet, salty, sour, bitter, umami? Eat slowly, and listen to your body when it feels full."
+      },
+      {
         "category": "healthier",
         "title": "Cook a meal with at least 5 different colours",
         "description": "And no, ketchup and mustard don't count as colours! Cook up a meal with a healthy variety of colourful vegetables and legumes. You'll feel as good as it tastes!"
+      },
+      {
+        "category": "healthier",
+        "title": "Do a five-minute full body stretch",
+        "description": "Stretching is very important, especially if you work at an office or feel a bit stiff in your body. This video is short, easy to follow and is sure to make you feel less tense! https://www.youtube.com/watch?v=Ef6LwAaB3_E&ab_channel=MadFit"
+      },
+      {
+        "category": "healthier",
+        "title": "Practice meditation",
+        "description": "Studies have shown that incorporating meditation into our daily routines have huge positive impacts on our mental health. Try your best today to meditate, either after you wake up, in-between tasks or before bed. Appreciate how calm and refreshed you feel afterward!"
+      },
+      {
+        "category": "healthier",
+        "title": "Sober night out",
+        "description": "If you have a social event planned, a party, an after work or such where you know there will be alcohol, challenge yourself to not drink or get drunk. Reducing the amount of alcohol we consume is a great step toward feeling healthier - and imagine how good you'll feel the day after!"
+      },
+      {
+        "category": "healthier",
+        "title": "Eat breakfast",
+        "description": "Skipping breakfast due to stress in the morning is something we all do on occasion. However, studies have shown that adults who have a healthy breakfast do better at work, and kids who eat a morning meal score higher on tests. If a big plateful first thing isn't for you, have a granola bar, a smoothie or a piece of fruit for breakfast."
+      },
+      {
+        "category": "healthier",
+        "title": "Stay hydrated",
+        "description": "An adult needs on average 0.5-2 litres of water per day, unless you work in warm environments for example - then you need maybe twice of that. Staying hydrated throughout the day is a challenge, but that's what we want you to focus on today! Try to have one big glass of water for each meal, and set timers through the rest of the day to remind you to have a sip now and then."
+      },
+      {
+        "category": "healthier",
+        "title": "Learn something new",
+        "description": "Let's keep your brain healthy! Learning new skills is a great way to keep the brain excercised and young. Learn a dance choreography on Youtube, knit a beanie, make your first HTML website or draw a portrait of your dog. You're never too old to learn!"
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
+      },
+      {
+        "category": "confident",
+        "title": "",
+        "description": ""
       }
-]
+  ]
