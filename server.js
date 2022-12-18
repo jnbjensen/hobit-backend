@@ -52,13 +52,6 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-//TEST USER
-
-// const testUser = new User({name:"Nick", password: bcrypt.hashSync('opensesame')});
-// testUser.save()
-
-//
-
   // activePrograms: 
   //  [{
   //   category: {
@@ -262,6 +255,51 @@ app.get('/profile/:userId', async (req, res) => {
 		})
 	}
 })
+
+//UPDATE ACTIVE PROGRAM
+// Request body: 
+// {
+//   "category": "happier",
+//   "day": 1
+// }
+
+app.patch('/updateActiveProgram/:userId', async (req, res) => {
+  try {
+    const updatedProgram = await User.findOneAndUpdate(
+      { userId: req.params.userId },
+      {
+        $set: {
+          'programs.activeProgram.category': req.body.category,
+          'programs.activeProgram.day': req.body.day
+        }
+      },
+      { new: true }
+    );
+    res.json(updatedProgram);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// ADD COMPLETED PROGRAM
+// Request body: 
+// {
+//   "programName": "happer"
+// }
+
+app.patch('/addCompletedProgram/:userId', async (req, res) => {
+  try {
+    const updatedPrograms = await User.findOneAndUpdate(
+      { userId: req.params.userId },
+      { $push: { 'programs.completedPrograms': req.body.programName } },
+      { new: true }
+    );
+    res.json(updatedPrograms);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 // Starts the server
 app.listen(port, () => {
