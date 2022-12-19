@@ -120,7 +120,7 @@ if(process.env.ADD_PROGRAMS) {
     temporaryArray.map(singleProgram => {
       // now, for each program object in our temporary array...
       const newProgram = new Program(singleProgram);
-      // treat is as a mongoose model
+      // treat it as a mongoose model
       newProgram.save();
       // and save it to the database
     });
@@ -263,12 +263,13 @@ app.get('/profile/:userId', async (req, res) => {
 //   "day": 1
 // }
 
-app.patch('/updateActiveProgram/:userId', async (req, res) => {
+app.patch('/updateActiveProgram/:username', async (req, res) => {
   try {
     const updatedProgram = await User.findOneAndUpdate(
-      { userId: req.params.userId },
+      { username: req.params.username },
       {
         $set: {
+          'programs.activeProgram.category': req.body.startDate,
           'programs.activeProgram.category': req.body.category,
           'programs.activeProgram.day': req.body.day
         }
@@ -299,7 +300,6 @@ app.patch('/addCompletedProgram/:userId', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
 
 // Starts the server
 app.listen(port, () => {
