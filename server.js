@@ -178,7 +178,9 @@ app.post("/login", async (req, res) => {
         response: {
           username: user.username,
           id: user._id,
-          accessToken: user.accessToken
+          accessToken: user.accessToken,
+          activeProgram: user.programs.activeProgram.category,
+          day: user.programs.activeProgram.day,
         }
       });
     } else {
