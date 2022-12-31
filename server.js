@@ -269,35 +269,35 @@ app.patch('/updateActiveProgram/:username', async (req, res) => {
       { username: req.params.username },
       {
         $set: {
-          'programs.activeProgram.category': req.body.startDate,
           'programs.activeProgram.category': req.body.category,
-          'programs.activeProgram.day': req.body.day
+          'programs.activeProgram.day': req.body.day,
+          'programs.activeProgram.startDate': req.body.startDate
         }
       },
       { new: true }
     );
     res.json(updatedProgram);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 
 // ADD COMPLETED PROGRAM
 // Request body: 
 // {
-//   "programName": "happer"
+//   "programName": "happier"
 // }
 
-app.patch('/addCompletedProgram/:userId', async (req, res) => {
+app.patch('/addCompletedProgram/:username', async (req, res) => {
   try {
     const updatedPrograms = await User.findOneAndUpdate(
-      { userId: req.params.userId },
+      { username: req.params.username },
       { $push: { 'programs.completedPrograms': req.body.programName } },
       { new: true }
     );
     res.json(updatedPrograms);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(400).json({ message: err.message });
   }
 });
 
