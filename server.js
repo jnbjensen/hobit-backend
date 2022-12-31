@@ -41,7 +41,6 @@ const UserSchema = new mongoose.Schema({
      },
      startDate: {
        type: String,
-       default: () => new Date()
      },
    }, 
    completedPrograms: {
