@@ -270,7 +270,6 @@ app.patch('/updateActiveProgram/:username', async (req, res) => {
         $set: {
           'programs.activeProgram.category': req.body.category,
           'programs.activeProgram.day': req.body.day,
-          'programs.activeProgram.startDate': req.body.startDate
         }
       },
       { new: true }
