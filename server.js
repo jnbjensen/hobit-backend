@@ -181,6 +181,7 @@ app.post("/login", async (req, res) => {
           accessToken: user.accessToken,
           activeProgram: user.programs.activeProgram.category,
           day: user.programs.activeProgram.day,
+          startDate: user.programs.activeProgram.startDate
         }
       });
     } else {
