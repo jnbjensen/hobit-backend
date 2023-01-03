@@ -43,9 +43,7 @@ const UserSchema = new mongoose.Schema({
        type: String,
      },
    }, 
-   completedPrograms: {
-     type: [String]
-   }
+   completedPrograms: [String]
   }
 });
 
