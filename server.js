@@ -49,21 +49,7 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-  // activePrograms: 
-  //  [{
-  //   category: {
-  //     type: String
-  //   },
-  //   day: {
-  //     type: Number,
-  //     default: 0
-  //   },
-  //   startDate: {
-  //     type: String,
-  //     default: () => new Date()
-  //   },
-  // }], 
-
+// PROGRAM CHALLENGE SCHEMA
 const ProgramChallengeSchema = new mongoose.Schema({
   day: {
     type: Number
@@ -79,6 +65,7 @@ const ProgramChallengeSchema = new mongoose.Schema({
   }
 });
 
+// PROGRAM SCHEMA
 const ProgramSchema = new mongoose.Schema({
   category: {
     type: String
@@ -90,6 +77,8 @@ const ProgramSchema = new mongoose.Schema({
 
 const Program = mongoose.model("Program", ProgramSchema);
 
+
+// ADD PROGRAMS TO DATABASE
 if(process.env.ADD_PROGRAMS) { 
   const addProgramsToDatabase = async () => {
     await Program.deleteMany(); 
@@ -125,14 +114,9 @@ if(process.env.ADD_PROGRAMS) {
     // aaaand run!
   }}
 
-/// login happend and you have acces to the user that tried to login
-/// you want to send back the program:
-// response: {
-// you select the Program that has the user.activeProgram category, and you send back the challenge that has the day number of the current step that the user is on
-//
+
 
 // ENDPOINTS
-
 app.get("/", (req, res) => {
   res.send("This is the backend of our project");
 });
@@ -217,7 +201,7 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-// FULL LIST OF CHALLENGES
+// FULL LIST OF CHALLENGES (not currently used in app)
 app.get('/challenges', (req, res) => {
   res.json(data)
 });
@@ -229,7 +213,7 @@ app.get('/challenges/:category', (req, res) => {
   res.json(challengesCategory)
 })
 
-// CATEGORY/PROGRAM NAMES
+// CATEGORY/PROGRAM NAMES (not currently used in app)
 app.get('/categories', (req, res) => {
   const categories = new Set()
   for (let i = 0; i < data.length; i++) {
@@ -239,7 +223,7 @@ app.get('/categories', (req, res) => {
   return res.status(200).json({'categories': categoriesArray});
 });
 
-// USER PROGRAM DATA
+// USER PROGRAM DATA (not currently used in app)
 app.get('/profile', authenticateUser)
 app.get('/profile/:userId', async (req, res) => {
 	const { userId } = req.params
@@ -257,13 +241,7 @@ app.get('/profile/:userId', async (req, res) => {
 	}
 })
 
-//UPDATE ACTIVE PROGRAM
-// Request body: 
-// {
-//   "category": "happier",
-//   "day": 1
-// }
-
+// UPDATE ACTIVE PROGRAM
 app.patch('/updateActiveProgram/:username', async (req, res) => {
   try {
     const updatedProgram = await User.findOneAndUpdate(
@@ -284,11 +262,6 @@ app.patch('/updateActiveProgram/:username', async (req, res) => {
 });
 
 // ADD COMPLETED PROGRAM
-// Request body: 
-// {
-//   "programName": "happier"
-// }
-
 app.patch('/addCompletedProgram/:username', async (req, res) => {
   try {
     const updatedPrograms = await User.findOneAndUpdate(
@@ -302,7 +275,7 @@ app.patch('/addCompletedProgram/:username', async (req, res) => {
   }
 });
 
-// Starts the server
+// START SERVER
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
